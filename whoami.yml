@@ -1,0 +1,37 @@
+---
+  - hosts: all 
+    gather_facts: yes 
+    tasks:
+    - name: find who is execiting 
+      shell: 'ifconfig && whoami'
+    - name: Find out current dir 
+      shell: 'pwd' 
+    - name: Installing tree 
+      apt:
+        name: tree 
+        state: latest     
+
+
+
+
+
+
+
+
+
+
+
+
+---
+ - hosts: webservers 
+   gather_facts: yes 
+   tasks:
+   - name: Installing a[ache servers 
+     yum: 
+       name: apache2 
+       state: absent # for uninatsll 
+   - name: Ensure Apache servers is running 
+     service:
+       name: apache
+       state: started 
+       enabled: yes     
